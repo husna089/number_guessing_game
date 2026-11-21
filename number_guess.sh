@@ -6,6 +6,12 @@ PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 echo "Enter your username:"
 read USERNAME
 
+while [[ ${#USERNAME} -gt 22 ]]
+do
+  echo "Username must be 22 characters or less. Try again:"
+  read USERNAME
+done
+
 USER_ID=$($PSQL "SELECT user_id FROM users WHERE username='$USERNAME'")
 
 if [[ -z $USER_ID ]]
